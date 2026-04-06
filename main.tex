@@ -1,0 +1,290 @@
+% !TEX program = xelatex
+\documentclass[12pt]{article}
+\usepackage[a4paper]{geometry}
+\usepackage[spanish,es-tabla]{babel}
+\addto\captionsspanish{%
+  \renewcommand{\listfigurename}{Índice de Figuras}%
+  \renewcommand{\listtablename}{Índice de Tablas}%
+}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+% \usepackage{fontspec}
+% biber main
+\usepackage{graphicx}
+\usepackage{times}
+\usepackage{amsmath}
+\usepackage{setspace}
+\usepackage{enumitem}
+\usepackage{fancyhdr}
+\usepackage{lipsum}
+\usepackage{csquotes}
+\usepackage{parskip}
+\usepackage[backend=biber, style=apa]{biblatex}
+\addbibresource{references.bib}
+\usepackage{caption}
+\usepackage{floatrow}
+\usepackage{titlesec}
+\usepackage{titletoc}
+\usepackage{appendix}
+\usepackage{tabularray}
+\usepackage{tocloft} 
+\usepackage{titlesec}
+\usepackage{physics}
+\usepackage{changepage}
+\usepackage[hidelinks]{hyperref} % eliminar rectangulos rojos en los links
+
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{siunitx}
+\sisetup{output-decimal-marker = {.}}
+\newcommand{\best}[1]{{\bfseries\tablenum{#1}}}  % para agregar negrita en tablas
+\usepackage{caption}
+\usepackage{makecell}
+\usepackage{array}
+
+\usepackage{titlesec}
+\titleformat{\section}
+  {\normalfont\fontsize{16}{16}\bfseries}{\thesection .}{0.5ex}{}
+\titleformat{\subsection}
+  {\normalfont\fontsize{14}{14}\bfseries}{\thesubsection .}{0.5ex}{}
+\titleformat{\subsubsection}
+  {\normalfont\fontsize{14}{14}\bfseries}{\thesubsubsection.}{0.5ex}{}
+
+
+%-----------------CONFIGURACION-------------------------------
+
+% Configuracion de la Pagina 
+\geometry{
+    a4paper,
+    total={21cm,29.7cm},
+    left=3cm,
+    top=2.5cm,
+    right=2.5cm,
+    bottom=2.5cm }
+
+\setstretch{1.5} %Interlineado a 1.5
+\setlength{\parindent}{1cm} %Sangría de cada nuevo párrafo a 1cm
+
+% Configuración del pie de página (old)
+% \fancyfoot[C]{\rule{\textwidth}{0.4pt}\\ \hspace*{\fill}\fontsize{12pt}{14pt}\selectfont Evaluación de cadenas de procesamientos en la creación de conjuntos de datos de habla \hspace*{\fill}\thepage} 
+
+%\setlength{\footskip}{0.5 cm}
+
+\setlength{\footskip}{0.05 cm}
+
+% Configuración del pie de página (new by chat)
+\fancyfoot[C]{\rule{\textwidth}{0.4pt}\\[0.5ex]%
+  \fontsize{11}{13}\selectfont Título de la tesis.}
+
+% número a la derecha, bajado con \raisebox (valor negativo baja)
+\fancyfoot[R]{\raisebox{-0.57cm}{\fontsize{12}{14}\selectfont\thepage}}
+
+\pagestyle{fancy} % Establecer el estilo de página como 'fancy'
+
+\fancyhead{} % Limpiar encabezado
+\renewcommand{\headrulewidth}{0pt} % Eliminar la línea de encabezado
+
+\DefineBibliographyStrings{spanish}{ % Redefinir la cadena de texto para Bibliografía
+  references = {BIBLIOGRAFÍA}, % <-- Aquí cerramos correctamente la definición}
+}
+% Configuración global de las descripciones de las figuras
+\captionsetup[figure]{font=small, labelsep=period}
+% Configuración global de las descripciones de las tablas
+\floatsetup[table]{capposition=top}
+\captionsetup[table]{font=small, labelsep=period}
+
+% Personalización del formato del índice de figuras
+\renewcommand{\cftfigpresnum}{Figura }
+\renewcommand{\cftfigaftersnum}{.}
+\setlength{\cftfignumwidth}{4em}
+
+% Personalización del formato del índice de tablas
+\renewcommand{\cfttabpresnum}{Tabla }
+\renewcommand{\cfttabaftersnum}{.}
+\setlength{\cfttabnumwidth}{4em}
+
+% Personalizar el formato del índice general
+\renewcommand{\cftsecleader}{\cftdotfill{\cftdotsep}} % Agrega puntos entre el título de la sección y el número de página
+\renewcommand{\cftsecfont}{\bfseries} % Establece la fuente del título de la sección en el índice como negrita
+\renewcommand{\cftsecpagefont}{\bfseries} % Establece la fuente de la página de la sección en el índice como negrita
+
+     
+% Definir el espaciado entre secciones y subsecciones
+\titlespacing*{\subsection}{1cm}{*4}{*1.5}
+
+% Definir el espaciado entre subsecciones y subsubsecciones
+\titlespacing*{\subsubsection}{1.5cm}{*4}{*1.5}
+
+
+\usepackage{fontspec}
+
+\setmainfont{Calibri Regular.ttf}[
+    Path = Fonts/,
+    BoldFont = Calibri Bold.TTF,
+    ItalicFont = Calibri Italic.ttf,
+    BoldItalicFont = Calibri Bold Italic.ttf
+]
+
+
+\begin{document}
+
+%-------------------------- PORTADA -----------------
+\begin{titlepage}
+\centering
+
+\fbox{\includegraphics[width=13.58cm, height=3.1cm]{Figuras/Formato/Logo Untref.png}}
+
+\vspace{0.1cm}
+
+\hspace*{-1.31cm}% Espacio horizontal de 1.31cm desde el borde izquierdo de la hoja
+\begin{minipage}[t]{16cm}
+\centering
+\framebox[17.13cm][c]{\parbox{18.13cm}{\centering{\fontsize{16pt}{1.5pt}\selectfont INGENIERÍA EN SONIDO}}}
+\vspace{0.5cm} % Espacio vertical entre el recuadro y el texto siguiente
+
+\end{minipage}
+
+
+\vspace{36pt}
+
+{\bfseries\fontsize{22pt}{24pt} \selectfont Título de la Tesis \par}
+
+\vspace{22pt}
+
+{\itshape\fontsize{18pt}{24pt}\selectfont \textbf{Subtítulo de la tesis (si lo tuviera)} \par}
+
+\vspace{44pt}
+
+{\itshape\fontsize{14pt}{24pt}\selectfont Tesis final presentada para obtener el título de Ingeniero de Sonido de la Universidad Nacional de Tres de Febrero (UNTREF)}
+
+\vspace{70pt}
+
+{\bfseries\fontsize{14pt}{0pt}\selectfont TESISTA: Nombre Apellido (DNI) \par}
+{\bfseries\fontsize{14pt}{0pt}\selectfont TUTOR/A: Nombre y Apellido del Tutor \par}
+{\bfseries\fontsize{14pt}{0pt}\selectfont COTUTOR/A: Nombre y Apellido del Cotutor (si hubiera) \par}
+
+\vfill
+
+\begin{table}[h]
+\hrulefill \\ 
+\begin{tabular}{c}
+Fecha de defensa: mes y año $\lvert$ Locación (Ej. Saenz Peña), Argentina \\
+\end{tabular}
+\end{table}
+\hrule
+\end{titlepage}
+
+\newpage
+\thispagestyle{empty} % Página en blanco sin número de página, encabezado ni pie de página
+\mbox{} % Contenido de la página en blanco
+\newpage
+
+%---------------------------------------------------------------
+% CUERPO DEL DOCUMENTO
+% Centrar título de sección
+
+\pagenumbering{roman} % Comienza la numeración de página en números romanos
+\setcounter{page}{2} % Establece el número de página según sea necesario
+
+%-----------------Agradecimientos-----------------
+\newpage 
+\thispagestyle{plain} 
+% \section*{AGRADECIMIENTOS} % Título centrado
+\input{Secciones/Agradecimientos}
+
+\clearpage
+
+\newpage
+\thispagestyle{plain} % Página en blanco sin número de página, encabezado ni pie de página
+\mbox{} % Contenido de la página en blanco
+\newpage
+
+%-----------------Estado del Arte-----------------
+\newpage
+\thispagestyle{plain} 
+% \section*{DEDICATORIA} 
+\input{Secciones/Dedicatoria}
+
+
+%------------------Indices------------------------
+\newpage
+\renewcommand{\contentsname}{ÍNDICE DE CONTENIDOS}
+\tableofcontents   % Índice General
+\newpage
+\listoffigures  % Índice de Figuras
+\newpage
+\listoftables   % Índice de Tablas 
+
+
+%------------------Resumen------------------------
+
+\newpage
+\thispagestyle{plain} 
+% \section*{\centering RESUMEN} 
+\addcontentsline{toc}{section}{RESUMEN} % Agregar RESUMEN al índice
+\input{Secciones/Resumen}
+% \end{titlepage}
+
+%------------------Abstrac------------------------
+
+\newpage
+\thispagestyle{plain} 
+% \section*{\centering ABSTRACT} 
+\addcontentsline{toc}{section}{ABSTRACT} % Agregar ABSTRACT al índice
+\input{Secciones/Abstrac}
+
+
+
+%-----------------Introducción-----------------
+\clearpage % Asegúrate de que la sección de introducción comience en una nueva página
+\pagenumbering{arabic} % Restaurar numeración arábiga
+\section{INTRODUCCIÓN} 
+\input{Secciones/Introduccion}
+
+
+\clearpage
+
+%-----------------Marco Teorico-----------------
+\newpage
+\section{MARCO TEÓRICO} 
+    \input{Secciones/MarcoTeorico}
+
+%-----------------Estado del Arte-----------------
+\newpage
+\section{ESTADO DEL ARTE} 
+    \input{Secciones/Estado del Arte}
+
+%-----------------Desarrollo-----------------
+\newpage
+\section{DESARROLLO} 
+    \input{Secciones/Metodologia}
+
+%-----------------Resultados y análisis-----------------
+\newpage
+\section{RESULTADOS Y ANÁLISIS} 
+    \input{Secciones/Resultados}
+
+
+%-----------------Conclusiones-----------------
+\newpage
+\section{CONCLUSIONES} 
+    \input{Secciones/Conclusiones}
+
+%-----------------Linea futuras de Invetigacion-----------------
+\newpage
+\section{LÍNEAS FUTURAS DE INVESTIGACIÓN} 
+    \input{Secciones/Linea futuras de Invetigacion}
+
+%-----------------Bibliografia-----------------
+\newpage
+
+\printbibliography[title={BIBLIOGRAFÍA}, heading=bibintoc]
+
+%-----------------ANEXO-----------------
+\newpage
+\appendix
+\section*{ANEXO I} 
+    \input{Secciones/Anexo}
+  
+\end{document}
+
