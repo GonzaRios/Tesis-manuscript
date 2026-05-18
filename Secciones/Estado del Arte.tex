@@ -1,0 +1,54 @@
+El desarrollo de sistemas de control por voz en dispositivos de borde ha experimentado un
+avance significativo con la evolución de la serie de microcontroladores ESP32. Actualmente,
+el ESP32-S3 se posiciona como el estándar para estas aplicaciones debido a su arquitectura de
+doble núcleo Xtensa LX7 y, fundamentalmente, por la inclusión de extensiones de
+instrucciones de inteligencia artificial que aceleran las operaciones de redes neuronales
+(\cite{kumar}). Esta capacidad de procesamiento local permite un cambio de paradigma hacia
+la inteligencia en el borde, buscando minimizar la latencia y maximizar la privacidad de los
+datos al mantener los procesamientos biométricos de voz dentro del dominio del hardware del
+dispositivo.
+
+En cuanto a la captura acústica, se observa una transición desde los micrófonos analógicos
+tradicionales hacia los micrófonos MEMS digitales, destacando el modelo INMP441. Estos
+dispositivos integran un sensor acústico, un preamplificador y un convertidor analógico a
+digital (ADC) de 24 bits, entregando una señal digital directamente a través de la interfaz I2S
+(Inter-IC Sound). Este enfoque elimina la vulnerabilidad al ruido inherente a las señales
+analógicas. No obstante, investigaciones en entornos educativos todavía emplean soluciones
+analógicas como el módulo MAX9814 con control automático de ganancia para simplificar el
+diseño de circuitos y reducir costes (\cite{nguyen}).
+
+El procesamiento de voz se divide actualmente en dos grandes arquitecturas: local e
+híbrida. El reconocimiento de voz local u offline utiliza marcos de trabajo como ESP-Skainet,
+que emplea los motores WakeNet para el monitoreo continuo de palabras de activación y
+MultiNet para el reconocimiento de hasta 200 comandos locales (\cite{joseph}).
+Complementariamente, plataformas como Edge Impulse facilitan el despliegue de modelos de
+aprendizaje automático personalizados (TinyML), entrenados para tareas específicas de
+detección de palabras clave con baja latencia. Por otro lado, las arquitecturas híbridas delegan
+las tareas computacionalmente intensivas, como el procesamiento de lenguaje natural, a
+servicios en la nube como OpenAI Whisper y ChatGPT (GPT-3.5-turbo), permitiendo que
+microcontroladores económicos realicen interacciones complejas de voz a texto y texto a voz
+(\cite{nguyen}). 
+
+La integración con el Internet de las Cosas (IoT) se apoya predominantemente en el
+protocolo MQTT (Transporte de telemetría de colas de mensajes), valorado por su ligereza y
+eficiencia en redes con ancho de banda limitado. El uso de MQTT permite que el ESP32 actúe
+como un cliente que publica eventos de acceso concedido o se suscribe a comandos remotos,
+integrándose con ecosistemas como Home Assistant. Investigaciones emergentes introducen
+el protocolo Model Context Protocol (MCP), que actúa como un lenguaje universal para que
+modelos de IA interactúen directamente con el hardware, descubriendo capacidades del
+dispositivo y ejecutando acciones físicas como el control de cerraduras de solenoide.
+En el ámbito de la seguridad, el estado del arte incluye sistemas avanzados de verificación
+de identidad mediante embeddings de voz (como ECAPA-TDNN o x-vectors) y mecanismos
+de detección de vitalidad (liveness detection) como los sistemas Void y LiveProbe, diseñados
+para prevenir ataques de repetición mediante el análisis de la potencia espectral de la voz
+humana frente a altavoces. A nivel de hardware, se enfatiza la implementación de Secure
+Boot y cifrado de flash para proteger la integridad del firmware y las plantillas biométricas
+almacenadas (\cite{jain}).
+
+Finalmente, la implementación práctica enfrenta desafíos críticos en la gestión de
+recursos. Las limitaciones de la memoria SRAM (normalmente 512 KB) obligan a optimizar
+el uso del heap y emplear técnicas de gestión de tareas mediante FreeRTOS (Sistema
+operativo en tiempo real) para manejar de forma concurrente la captura de audio y la
+comunicación de red (\cite{nguyen}). Asimismo, la estabilidad eléctrica es un factor
+determinante, requiriendo circuitos de protección contra caídas de tensión causadas por la
+activación de actuadores de alta corriente como solenoides o ventiladores.

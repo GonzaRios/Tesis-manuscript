@@ -1,1 +1,73 @@
-\subsection{MARCO TEÓRICO}
+La voz humana es una señal biológica compleja resultante de la interacción dinámica entre
+la aducción y vibración de los pliegues vocales y la emisión de flujo de aire pulmonar a través
+de estructuras resonantes (\cite{lee2021}). Como característica biométrica, posee tanto rasgos
+físicos (fisiológicos) como conductuales que la hacen única para cada individuo. En el ámbito
+de la seguridad, el reconocimiento de voz se divide principalmente en dos tareas: la
+identificación de hablante, que determina la identidad en una comparación de uno a muchos, y
+la verificación de hablante, que confirma una identidad declarada mediante un mapeo uno a
+uno (\cite{shivani}). Estos procesos pueden ser dependientes del texto o
+independientes del mismo, siendo estos últimos más versátiles pero complejos de procesar en
+entornos prácticos (\cite{costantini}).
+
+El procesamiento de voz en sistemas embebidos requiere transformar la señal de audio
+cruda en representaciones paramétricas compactas que reduzcan la dimensionalidad sin perder
+información discriminativa. Las técnicas más prevalentes incluyen a los Coeficientes
+Cepstrales en la Escala de Mel (MFCC), que representan el estándar al aproximar la respuesta
+no lineal del sistema auditivo humano mediante filtros espaciados logarítmicamente. Son
+altamente efectivos para modelar la envolvente espectral y el tono. Por otro lado, también
+existen los Coeficientes de Predicción Lineal (LPCC), que se basan en el sistema articulatorio
+humano (tracto vocal) y modelan la señal como una combinación lineal de muestras pasadas.
+Son computacionalmente eficientes y útiles en tareas de frase fija. También, se puede contar
+con características de dominio temporal (ZCR y STE), donde la tasa de cruce por cero (ZCR)
+y la energía de tiempo corto (STE) son descriptores de baja complejidad computacional
+ideales para dispositivos con recursos extremadamente limitados, como los
+microcontroladores PIC (\cite{shili}).
+
+La implementación de modelos de aprendizaje automático directamente en
+microcontroladores (Edge AI) permite reducir la latencia, mejorar la privacidad y eliminar la
+dependencia de la conectividad en la nube (\cite{roharia}). En cuanto a los tipos de arquitectura, las
+redes neuronales convolucionales (CNN) son altamente efectivas al tratar los espectrogramas
+de voz como imágenes para identificar patrones locales (\cite{costantini}). Por otro lado, los 
+Perceptrones Multicapa (MLP) o redes feed-forward (FNN) ofrecen
+un equilibrio óptimo entre precisión y ligereza para tareas de clasificación binaria en hardware
+restringido. En cuanto a la optimización, se emplea el método llamado Cuantización. El
+mismo es empleado para adaptar modelos complejos a la memoria SRAM y Flash limitada de
+un microcontrolador, que convierten pesos de punto flotante de 32 bits a enteros de 8 bits
+(int8), reduciendo el tamaño del modelo hasta cuatro veces con una pérdida mínima de
+precisión (\cite{evans}).
+
+El rendimiento de los sistemas de biometría vocal es sensible a variables ambientales y
+biológicas como:
+\begin{itemize}
+    \item  Relación Señal-Ruido (SNR): la calidad del micrófono MEMS es crítica; micrófonos con
+alto SNR permiten capturar sutilezas de la voz incluso a niveles bajos de presión sonora
+(SPL), mientras que un bajo SNR degrada significativamente la tasa de error de palabra
+(WER).
+    \item Variabilidad biológica y envejecimiento: el envejecimiento fisiológico altera las
+estructuras laríngeas, modificando la frecuencia fundamental (F0), el jitter y el shimmer.
+Estadísticas de orden superior, como la asimetría (skewness) y la curtosis, han demostrado ser
+predictores clave para distinguir entre voces jóvenes y ancianas.
+    \item Vulnerabilidades de Seguridad: Los sistemas son susceptibles a ataques de replaying y
+clonación de voz mediante IA generativa. Como contramedida, se implementan técnicas de
+detección de vitalidad (liveness detection) y autenticación multifactor (MFA) combinando voz
+con otros rasgos biométricos.
+\end{itemize}
+
+La eficacia de un sistema biométrico se cuantifica mediante la tasa de falsa aceptación
+(FAR), la tasa de falso rechazo (FRR) y la tasa de igual error (EER) (\cite{brydinskyi}).
+El EER representa el punto donde FAR y FRR son iguales; un valor menor indica una mayor
+precisión global del sistema. En aplicaciones de comercio electrónico o control de acceso,
+estas métricas deben balancearse según la criticidad de la seguridad frente a la conveniencia
+del usuario.
+
+\subsubsection{Modelos de identificación del hablante}
+\textcolor{red}{En este apartado se detallará acerca de la arquitectura de los distintos tipos de 
+modelos que se encuentran en el mercado.}
+
+\subsubsection{Embeddings}
+\textcolor{red}{En este apartado se detallará acerca de la herramienta fundamental que es 
+para esta investigación la utilización de embeddings.}
+
+\subsubsection{Espectrograma de Mel y MFCC}
+\textcolor{red}{En este apartado se detallará acerca del concepto fundamental para la extracción de 
+información acústica de la señal que ingresa al sistema.}

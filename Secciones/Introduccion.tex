@@ -1,3 +1,96 @@
 \subsection{FUNDAMENTACIÓN}
 
-Ejemplo de cita (\cite{example}). Ver repositorio original para ver mas ejemplos sobre como hacer que se renderizen correctamente usando BibTex.
+En la actualidad, la biometría de voz se ha consolidado como un mecanismo de autenticación robusto,
+permitiendo el control de acceso sin contacto y mejorando la seguridad en múltiples entornos.
+Tradicionalmente, estos sistemas han dependido de arquitecturas basadas en la nube o de procesadores
+de alto rendimiento debido a la complejidad computacional que requiere la extracción de características
+acústicas y la inferencia mediante modelos de aprendizaje automático. Sin embargo, el auge del paradigma
+Edge Computing y, específicamente, del TinyML (Machine Learning en el borde), ha posibilitado la
+migración de estos algoritmos hacia dispositivos con recursos más limitados (\cite{rayen}). 
+En este marco, la combinación de microcontroladores de bajo costo y consumo, junto con micrófonos 
+con tecnología MEMS (Sistemas Microelectromecánicos), representa una solución de hardware óptima y 
+escalable para la implementación de sistemas de bioacceso autónomos e integrables en el ecosistema 
+de la Internet de las Cosas (IoT) (\cite{warden}).
+
+Si bien la literatura documenta avances significativos en el reconocimiento de locutor (SR) 
+(\cite{fenu}) , existe un vacío crítico en la intersección de la optimización de hardware
+y la sociolingüística aplicada. La inmensa mayoría de los conjuntos de datos vocales (corpus)
+y los modelos pre entrenados disponibles comercial o académicamente están sesgados hacia idiomas
+hegemónicos, como el inglés, o hacia variantes estandarizadas del español, como  español 
+latinoamericano "neutro". La variante del castellano rioplatense posee características
+fonológicas, prosódicas y de articulación únicas, tales como el yeísmo y la aspiración de la /s/ 
+implosiva (\cite{colantoni}). Al cuantizar (conversión de 32 bits a 8 bits) y comprimir redes 
+neuronales para que operen dentro de las limitaciones de memoria (SRAM/Flash) y procesamiento 
+de un microcontrolador, los modelos tienden a perder precisión, y esta degradación afecta de 
+manera desproporcionada a las variantes dialectales subrepresentadas en el entrenamiento original. 
+Actualmente, no existe un marco de desarrollo estandarizado que garantice la eficacia de sistemas 
+de bioacceso offline sobre hardware restrictivo calibrado específicamente para la fonética rioplatense.
+
+A partir de la problemática expuesta, la presente investigación se articula en torno a la 
+siguiente pregunta: ¿De qué manera se puede ajustar y optimizar un modelo de 
+aprendizaje automático para la detección y verificación del hablante, implementado 
+en microcontroladores de bajos recursos mediante micrófonos MEMS, que garantice un alto 
+nivel de precisión y seguridad operando exclusivamente con locutores de dialecto castellano rioplatense?
+
+El desarrollo de esta investigación se justifica por su doble aporte: tecnológico y 
+sociocultural. Desde la perspectiva tecnológica, el proyecto llenará un punto vacío 
+en la ingeniería de sistemas embebidos al proponer una metodología documentada para 
+la extracción de características acústicas (como coeficientes MFCC), el aumento y 
+tratamiento de datos para mitigar el ruido inherente a los micrófonos MEMS (\cite{ko2015}), 
+y el diseño de arquitecturas de inferencia ligeras que logren alta precisión frente a variaciones 
+fonéticas locales, superando las limitaciones intrínsecas del hardware. Desde una 
+perspectiva sociocultural y de usabilidad, este trabajo combate el sesgo lingüístico 
+en la Inteligencia Artificial. Al desarrollar tecnología de acceso biométrico que 
+reconozca y valide las particularidades del castellano rioplatense, se democratiza 
+el acceso a la seguridad tecnológica de vanguardia, garantizando que los usuarios 
+locales interactúen con dispositivos que se adaptan a su identidad lingüística, 
+y no a la inversa.
+
+% \subsection{INTRODUCCIÓN}
+% Históricamente, la complejidad computacional requerida para la extracción de
+% características acústicas y la inferencia de modelos obligaba a que estos sistemas dependieran
+% de la nube o de procesadores de alto rendimiento. La integración de microcontroladores de
+% bajo costo junto con micrófonos MEMS representa hoy una solución escalable y eficiente
+% para implementar sistemas de reconocimiento de voz autónomos, preservando la privacidad al
+% procesar los datos de forma local en el ecosistema IoT (Barovic \& Moin, 2025).
+
+% Para dar respuesta a esta problemática, el presente trabajo propone diseñar, entrenar y
+% optimizar un sistema de control de acceso biométrico por voz en hardware de bajo costo,
+% orientado exclusivamente a locutores de dialecto castellano rioplatense. La investigación
+% plantea un diseño que procesará la información de forma estrictamente local utilizando un
+% microcontrolador de la familia ESP32 y un micrófono digital MEMS. Metodológicamente, se
+% abarcará desde la extracción de características acústicas basadas en coeficientes MFCC hasta
+% el entrenamiento, la cuantización y la implementación del modelo de red neuronal en el
+% dispositivo.
+
+% Finalmente, el desempeño y la viabilidad del sistema se validarán a través de métricas
+% específicas como la Tasa de Igual Error (EER), comparando el rendimiento del modelo
+% original frente a su versión cuantizada embebida. De este modo, la investigación no solo
+% ofrece un aporte tecnológico sustancial para la ingeniería de sistemas embebidos, sino que
+% realiza una contribución sociocultural al mitigar el sesgo lingüístico en la IA, permitiendo que
+% los dispositivos de seguridad se adapten a la identidad de los usuarios locales, y no a la
+% inversa
+
+\subsection{OBJETIVOS}
+
+\subsubsection{Objetivo general}
+En lo que compete a esta investigación, el objetivo general de la misma abarca desarrollar
+un sistema destinado al control de acceso de personas por medio de reconocimiento de voz en
+castellano rioplatense, implementado en hardware de bajo costo
+
+\subsubsection{Objetivos específicos}
+\begin{itemize}
+    \item  Implementar un algoritmo para la extracción del descriptor MFCC (Mel-Frecuency
+Cespectral Coefficient).
+    \item Ajuste fino (FT) en PC para su posterior cuantización.
+    \item  Evaluar la tasa de error (EER) post cuantización.
+    \item Transferir el modelo entrenado al microcontrolador.
+    \item Comparar el EER obtenido entre el dispositivo y la PC.
+    \item Confeccionar una interfaz de usuario para que el administrador del sistema pueda
+generar nuevos enrolamientos de usuarios.
+    \item Realizar pruebas de concepto con usuarios que no se hayan empleado para el
+entrenamiento del modelo.
+\end{itemize}
+
+\subsection{ESTRUCTURA DE LA INVESTIGACIÓN}
+\textcolor{red}{En este sección ira detallado como se dividen los distintos apartados de la investigación.}
